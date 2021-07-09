@@ -1,0 +1,206 @@
+{
+    "jublee_hills" : {
+        "screen-1" : {
+            "silver" : 50,
+            "gold" : 100,
+            "elite" : 50
+        },
+        "screen-2" : {
+            "silver" : 60,
+            "gold" : 100,
+            "elite" : 50
+        },
+        "screen-3" : {
+            "silver" : 40,
+            "gold" : 100,
+            "elite" : 30
+        }
+    },
+    "madhapur" : {
+        "screen-1" : {
+            "silver" : 50,
+            "gold" : 100,
+            "elite" : 50
+        },
+        "screen-2" : {
+            "silver" : 60,
+            "gold" : 100,
+            "elite" : 50
+        },
+        "screen-3" : {
+            "silver" : 40,
+            "gold" : 100,
+            "elite" : 30
+        }
+    },
+    "kukutpally" : {
+        "screen-1" : {
+            "silver" : 50,
+            "gold" : 100,
+            "elite" : 50
+        },
+        "screen-2" : {
+            "silver" : 60,
+            "gold" : 100,
+            "elite" : 50
+        },
+        "screen-3" : {
+            "silver" : 40,
+            "gold" : 100,
+            "elite" : 30
+        }
+    },    
+        "andheri" : {
+            "screen-1" : {
+                "silver" : 50,
+                "gold" : 100,
+                "elite" : 50
+            },
+            "screen-2" : {
+                "silver" : 60,
+                "gold" : 100,
+                "elite" : 50
+            },
+            "screen-3" : {
+                "silver" : 40,
+                "gold" : 100,
+                "elite" : 30
+            }
+        },
+        "bandra" : {
+            "screen-1" : {
+                "silver" : 50,
+                "gold" : 100,
+                "elite" : 50
+            },
+            "screen-2" : {
+                "silver" : 60,
+                "gold" : 100,
+                "elite" : 50
+            },
+            "screen-3" : {
+                "silver" : 40,
+                "gold" : 100,
+                "elite" : 30
+            }
+        },
+        "borivali" : {
+            "screen-1" : {
+                "silver" : 50,
+                "gold" : 100,
+                "elite" : 50
+            },
+            "screen-2" : {
+                "silver" : 60,
+                "gold" : 100,
+                "elite" : 50
+            },
+            "screen-3" : {
+                "silver" : 40,
+                "gold" : 100,
+                "elite" : 30
+            }
+        },
+        "jayanagar" : {
+            "screen-1" : {
+                "silver" : 50,
+                "gold" : 100,
+                "elite" : 50
+            },
+            "screen-2" : {
+                "silver" : 60,
+                "gold" : 100,
+                "elite" : 50
+            },
+            "screen-3" : {
+                "silver" : 40,
+                "gold" : 100,
+                "elite" : 30
+            }
+        },
+        "electronic-city" : {
+            "screen-1" : {
+                "silver" : 50,
+                "gold" : 100,
+                "elite" : 50
+            },
+            "screen-2" : {
+                "silver" : 60,
+                "gold" : 100,
+                "elite" : 50
+            },
+            "screen-3" : {
+                "silver" : 40,
+                "gold" : 100,
+                "elite" : 30
+            }
+        },
+        "basavanagudi" : {
+            "screen-1" : {
+                "silver" : 50,
+                "gold" : 100,
+                "elite" : 50
+            },
+            "screen-2" : {
+                "silver" : 60,
+                "gold" : 100,
+                "elite" : 50
+            },
+            "screen-3" : {
+                "silver" : 40,
+                "gold" : 100,
+                "elite" : 30
+            }
+        },
+    "egmore" : {
+        "screen-1" : {
+            "silver" : 50,
+            "gold" : 100,
+            "elite" : 50
+        },
+        "screen-2" : {
+            "silver" : 60,
+            "gold" : 100,
+            "elite" : 50
+        },
+        "screen-3" : {
+            "silver" : 40,
+            "gold" : 100,
+            "elite" : 30
+        },
+    "tambaram" : {
+        "screen-1" : {
+            "silver" : 50,
+            "gold" : 100,
+            "elite" : 50
+        },
+        "screen-2" : {
+            "silver" : 60,
+            "gold" : 100,
+            "elite" : 50
+        },
+        "screen-3" : {
+            "silver" : 40,
+            "gold" : 100,
+            "elite" : 30
+        }
+    },
+    "guindy" : {
+        "screen-1" : {
+            "silver" : 50,
+            "gold" : 100,
+            "elite" : 50
+        },
+        "screen-2" : {
+            "silver" : 60,
+            "gold" : 100,
+            "elite" : 50
+        },
+        "screen-3" : {
+            "silver" : 40,
+            "gold" : 100,
+            "elite" : 30
+        }
+    }
+}
+}
