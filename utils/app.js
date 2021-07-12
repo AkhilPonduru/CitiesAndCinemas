@@ -7,6 +7,8 @@ const app = express();
 const port = 3000;
 const host = "localhost";
 
+app.use(express.json())
+
 const data = JSON.parse(
     fs.readFileSync("cinemas.json")
 );
@@ -72,6 +74,28 @@ app.get('/cinemas/:city/:area/:screen',(req,res) => {
     });
     logger.info("Server running well and someone got access to city and a particular screen in it");
 });
+
+app.post('/cinemas/:city',(req,res)=>{
+    const newCity = Object.assign(req.body);
+
+    data.push(newCity)
+    
+    fs.writeFileSync("cinemas.json",JSON.stringify(newCity),err =>{
+        res.status(201).json(newCity);
+    });
+})
+
+app.post('/cinemas/:city/:area',(req,res)=>{
+    const newCity = Object.assign(req.body);
+    const city = req.params.city
+
+    const requiredCity = data.find(el => el.city === city)
+    requiredCity.Area.push(newCity);
+    
+    fs.writeFile("cinemas.json",JSON.stringify(newCity),err =>{
+        res.status(201).json(newCity);
+    });
+})
 
 // Run the server
 app.listen(port, () => {
