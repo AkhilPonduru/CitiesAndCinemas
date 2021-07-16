@@ -75,27 +75,55 @@ app.get('/cinemas/:city/:area/:screen',(req,res) => {
     logger.info("Server running well and someone got access to city and a particular screen in it");
 });
 
-app.post('/cinemas/:city',(req,res)=>{
+// By doing this we're adding a new city to thr collection
+app.post('/cinemas',(req,res)=>{
     const newCity = Object.assign(req.body);
 
     data.push(newCity)
     
-    fs.writeFileSync("cinemas.json",JSON.stringify(newCity),err =>{
-        res.status(201).json(newCity);
+    fs.writeFile("cinemas.json",JSON.stringify(data),err =>{
+        res.status(201).json({status : "Success - New city added"});
     });
 })
 
-app.post('/cinemas/:city/:area',(req,res)=>{
-    const newCity = Object.assign(req.body);
-    const city = req.params.city
+// In here we're adding the new area to the existing city
+app.post('/cinemas/:city',(req,res) => {
+    const city = req.params.city;
+    const newArea = Object.assign(req.body) 
+    const cities = data.find(el =>
+        el.city === city 
+        )
+    cities.Area.push(newArea)
 
-    const requiredCity = data.find(el => el.city === city)
-    requiredCity.Area.push(newCity);
-    
-    fs.writeFile("cinemas.json",JSON.stringify(newCity),err =>{
-        res.status(201).json(newCity);
+    fs.writeFile("areas.json",JSON.stringify(data),err=>{
+        res.status(201).json(newArea)
     });
-})
+    logger.info("Server running good and somebody added a new area to existing city");
+});
+
+app.post('/cinemas/:city/:area/:screen',(req,res) => {
+    const area = req.params.area;
+    const city = req.params.city;
+    const screenNo = req.params.screen
+    const newScreen = req.body
+
+    var center = 0;
+    for(var i in place){
+        if(i == area){
+            center = place[i]
+        }
+    };
+    center[screenNo] = newScreen
+
+    fs.writeFile("areas.json",JSON.stringify(place),err =>{
+        res.status(200).json({
+            City : city,
+            Area : area,
+            Response : "added extra screen"
+        })
+    });
+    logger.info("Server running well and someone added a new screen in the existing area");
+});
 
 // Run the server
 app.listen(port, () => {
