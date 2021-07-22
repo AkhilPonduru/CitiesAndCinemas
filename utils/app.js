@@ -5,20 +5,20 @@ const fs = require('fs');
 const logger = require('../utils/logger');
 const app = express();
 const port = 3000;
-const host = "localhost";
+const host = 'localhost';
 
 app.use(express.json())
 
 const data = JSON.parse(
-    fs.readFileSync("cinemas.json")
+    fs.readFileSync('cinemas.json')
 );
 const place = JSON.parse(
-    fs.readFileSync("areas.json")
+    fs.readFileSync('areas.json')
 );
 
 app.get('/cinemas',(req,res) => {
     res.status(200).json(data);
-    logger.info("Server started and running succesfully");
+    logger.info('Server started and running succesfully');
 });
 
 app.get('/cinemas/:city',(req,res) => {
@@ -27,7 +27,7 @@ app.get('/cinemas/:city',(req,res) => {
         el.city === city 
         )
     res.status(200).json(cities);
-    logger.info("Server running good and somebody got access to ciities");
+    logger.info('Server running good and somebody got access to ciities');
 });
 
 app.get('/cinemas/:city/:area',(req,res) => {
@@ -45,7 +45,7 @@ app.get('/cinemas/:city/:area',(req,res) => {
         Area : area,
         Screens : center
     });
-    logger.info("Server running well and someone got access to city and screens in it");
+    logger.info('Server running well and someone got access to city and screens in it');
 });
 
 app.get('/cinemas/:city/:area/:screen',(req,res) => {
@@ -72,7 +72,7 @@ app.get('/cinemas/:city/:area/:screen',(req,res) => {
         Area : area,
         Screen : RequiredScreen
     });
-    logger.info("Server running well and someone got access to city and a particular screen in it");
+    logger.info('Server running well and someone got access to city and a particular screen in it');
 });
 
 // By doing this we're adding a new city to thr collection
@@ -81,8 +81,8 @@ app.post('/cinemas',(req,res)=>{
 
     data.push(newCity)
     
-    fs.writeFile("cinemas.json",JSON.stringify(data),err =>{
-        res.status(201).json({status : "Success - New city added"});
+    fs.writeFile('cinemas.json',JSON.stringify(data),err =>{
+        res.status(201).json({status : 'Success - New city added'});
     });
 })
 
@@ -95,7 +95,7 @@ app.post('/cinemas/:city',(req,res) => {
         )
     cities.Area.push(newArea)
 
-    fs.writeFile("areas.json",JSON.stringify(data),err=>{
+    fs.writeFile('areas.json',JSON.stringify(data),err=>{
         res.status(201).json(newArea)
     });
     logger.info("Server running good and somebody added a new area to existing city");
@@ -115,18 +115,80 @@ app.post('/cinemas/:city/:area/:screen',(req,res) => {
     };
     center[screenNo] = newScreen
 
-    fs.writeFile("areas.json",JSON.stringify(place),err =>{
+    fs.writeFile('areas.json',JSON.stringify(place),err =>{
         res.status(200).json({
             City : city,
             Area : area,
-            Response : "added extra screen"
+            Response : 'added extra screen'
         })
     });
-    logger.info("Server running well and someone added a new screen in the existing area");
+    logger.info('Server running well and someone added a new screen in the existing area');
+});
+
+
+//Delete method
+app.delete('/cinemas/:city',(req,res)=>{
+    const town = req.params.city
+    const requiredTown = data.find(el => 
+        el.city === town);
+    if(town == requiredTown.city){
+        fs.rm('cinemas.json',{recursive:true},(err) =>{
+            res.status(204).json({
+                status : 'Deleted',
+                Content : null
+            });
+        })
+    };
+});
+
+// Patch or Update method
+// This is to update the existing city with a new one
+app.patch('/cinemas/:city',(req,res) => {
+    const city = req.params.city;
+    const newArea = Object.assign(req.body)
+    
+    let index = 0;
+    for(let i=0;i<data.length;i++){
+        if(data[i].city == city){
+            index = i
+        }
+    } 
+    data[index] = newArea
+
+    fs.writeFile('areas.json',JSON.stringify(data),err=>{
+        res.status(201).json(newArea)
+    });
+    logger.info("Server running good and somebody updated an city");
+});
+
+// This is to update the existing city with a new one
+app.patch('/cinemas/:city/:area',(req,res) => {
+    const city = req.params.city;
+    const area = req.params.area;
+    const newArea = Object.assign(req.body)
+    
+    let index = 0; 
+    let secondIndex = 0;
+    for(let i=0;i<data.length;i++){
+        if(data[i].city == city){
+            index = i
+        }
+    } 
+    // data[index] = newArea
+    for(var j in data[index].Area[0]){
+        if(j == area){
+            secondIndex = j
+        }
+    }
+    data[index].Area[0][secondIndex] = newArea
+    fs.writeFile('areas.json',JSON.stringify(data),err=>{
+        res.status(201).json(newArea)
+    });
+    logger.info("Server running good and somebody updated an area in existing city");
 });
 
 // Run the server
 app.listen(port, () => {
-    console.log("Server started...");
+    console.log('Server started...');
     logger.info(`Server started and running on http://${host}:${port}`)
-})
+});
