@@ -169,13 +169,13 @@ app.patch('/cinemas/:city/:area',(req,res) => {
     
     let index = 0; 
     let secondIndex = 0;
-    for(let i=0;i<data.length;i++){
+    for(let i in data){
         if(data[i].city == city){
             index = i
         }
     } 
     // data[index] = newArea
-    for(var j in data[index].Area[0]){
+    for(let j in data[index].Area[0]){
         if(j == area){
             secondIndex = j
         }
