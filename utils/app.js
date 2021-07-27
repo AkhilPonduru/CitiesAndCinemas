@@ -107,7 +107,7 @@ app.post('/cinemas/:city/:area/:screen',(req,res) => {
     const screenNo = req.params.screen
     const newScreen = req.body
 
-    var center = 0;
+    let center = 0;
     for(var i in place){
         if(i == area){
             center = place[i]
@@ -147,13 +147,19 @@ app.patch('/cinemas/:city',(req,res) => {
     const city = req.params.city;
     const newArea = Object.assign(req.body)
     
-    let index = 0;
-    for(let i=0;i<data.length;i++){
-        if(data[i].city == city){
-            index = i
+    let inox = 0;
+    // for(let i=0;i<data.length;i++){
+    //     if(data[i].city == city){
+    //         index = i
+    //     }
+    // } 
+    inox = data.map((element,index) => {
+        if(element.city == city){
+            return index
         }
-    } 
-    data[index] = newArea
+    });
+    console.log(inox[inox.length-1])
+    data[inox[inox.length-1]] = newArea
 
     fs.writeFile('areas.json',JSON.stringify(data),err=>{
         res.status(201).json(newArea)
